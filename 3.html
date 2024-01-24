@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3</title>
+  <style>
+    .accordion {
+      width: 80%;
+      margin: auto;
+    }
+
+    .section {
+      border: 1px solid #ddd;
+      margin: 10px 0;
+    }
+
+    .section h2 {
+      cursor: pointer;
+      padding: 10px;
+      margin: 0;
+      background-color: #f1f1f1;
+    }
+
+    .content {
+      display: none;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="accordion">
+  <div class="section">
+    <h2 onclick="toggleContent('section1')">Section 1</h2>
+    <div id="section1" class="content">
+      <p>Content for Section 1...</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 onclick="toggleContent('section2')">Section 2</h2>
+    <div id="section2" class="content">
+      <p>Content for Section 2...</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function toggleContent(sectionId) {
+    const content = document.getElementById(sectionId);
+    
+    const allContent = document.querySelectorAll('.content');
+
+    allContent.forEach(item => {
+      if (item.id !== sectionId) {
+        item.style.display = 'none';
+      }
+    });
+
+    content.style.display = (content.style.display === 'none' || content.style.display === '') ? 'block' : 'none';
+  }
+</script>
+
+</body>
+</html>

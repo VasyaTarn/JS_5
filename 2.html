@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2</title>
+  <style>
+    #galleryContainer {
+      width: 80%;
+      margin: auto;
+      text-align: center;
+      position: relative;
+    }
+
+    #galleryImage {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ddd;
+    }
+
+    #prevButton, #nextButton {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    #prevButton {
+      left: 10px;
+    }
+
+    #nextButton {
+      right: 10px;
+    }
+
+    .disabled {
+      color: grey;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+<div id="galleryContainer">
+  <img id="galleryImage" src="" alt="Gallery Image">
+  <button id="prevButton" onclick="showPreviousImage()" class="disabled">&#10094; Prev</button>
+  <button id="nextButton" onclick="showNextImage()" class="disabled">Next &#10095;</button>
+</div>
+
+<script>
+  const imageArray = [
+    'file_type_html_icon_130541.png',
+    'CSS3_logo.svg.png',
+  ];
+
+  let currentIndex = 0;
+
+  function showPreviousImage() {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateImage();
+    }
+  }
+
+  function showNextImage() {
+    if (currentIndex < imageArray.length - 1) {
+      currentIndex++;
+      updateImage();
+    }
+  }
+
+  function updateImage() {
+    const galleryImage = document.getElementById('galleryImage');
+    const prevButton = document.getElementById('prevButton');
+    const nextButton = document.getElementById('nextButton');
+
+    galleryImage.src = imageArray[currentIndex];
+
+    prevButton.classList.toggle('disabled', currentIndex === 0);
+    nextButton.classList.toggle('disabled', currentIndex === imageArray.length - 1);
+  }
+
+  updateImage();
+</script>
+
+</body>
+</html>
